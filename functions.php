@@ -7,6 +7,14 @@
  * @since JL MetroCafe 1.0
  */
  
+define('JLMETROCAFE_FUNCTIONS_PATH', get_template_directory_uri());
+
+/*
+		================== FUNCTIONS ====================
+*/
+require(JLMETROCAFE_FUNCTIONS_PATH . '/functions/customize-functions.php');
+
+
 
 
 if (!function_exists('setup_jl_metrocafe')) :
@@ -19,7 +27,13 @@ if (!function_exists('setup_jl_metrocafe')) :
 		 * hard-coded <title> tag in the document head, and expect WordPress to
 		 * provide it for us.
 		 */
-		add_theme_support( 'title-tag' );
+		// add_theme_support( 'title-tag' );
+
+
+		add_theme_support( 'post-thumbnails' );
+
+		add_theme_support( 'post-formats',  array ( 'aside', 'gallery', 'quote', 'image', 'video' ) );
+
 
 	}
 endif;
@@ -51,9 +65,10 @@ function dwjl_scripts () {
 	wp_enqueue_style('bootstrap',get_template_directory_uri().'/css/bootstrap.min.css',[],'v3.3.7');
 	//FONTAWESOME
 	wp_enqueue_style('font-awesome',get_template_directory_uri().'/css/font-awesome.min.css',[],'4.7.0');
-
 	//MAIN STYLE
-	wp_enqueue_style('jl-restaurant',get_template_directory_uri());
+	wp_enqueue_style('jl-restaurant',get_template_directory_uri().'/style.css');
+	//RESPONSIVE
+	wp_enqueue_style('main-responsive',get_template_directory_uri().'/css/responsive.css');
 
 	/****** JAVASCRIPT ******/
 	//JQUERY
@@ -81,6 +96,8 @@ function dwjl_scripts () {
 	wp_enqueue_script('magnific-popup',get_template_directory_uri(). '/js/jquery.magnific-popup.min.js', array(), 'v1.1.0', true);
 	//JQUERY.STICKY
 	wp_enqueue_script('jquery.sticky',get_template_directory_uri(). '/js/jquery.sticky.js', array(), 'v1.0.4', true);
+	//MODERNIZR
+	wp_enqueue_script('modernizr',get_template_directory_uri(). '/js/vendor/modernizr-2.8.3.min.js', array(), 'v2.8.3');
 
 
 
@@ -88,18 +105,3 @@ function dwjl_scripts () {
 
 add_action( 'wp_enqueue_scripts', 'dwjl_scripts' );
 
-
-//FAV ICONS
-function prefix_custom_site_icon_size( $sizes ) {
-   $sizes[] = 64;
- 
-   return $sizes;
-}
-add_filter( 'site_icon_image_sizes', 'prefix_custom_site_icon_size' );
- 
-function prefix_custom_site_icon_tag( $meta_tags ) {
-   $meta_tags[] = sprintf( '<link rel="icon" href="%s" sizes="64x64" />', esc_url( get_site_icon_url( null, 64 ) ) );
- 
-   return $meta_tags;
-}
-add_filter( 'site_icon_meta_tags', 'prefix_custom_site_icon_tag' );
