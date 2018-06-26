@@ -53,8 +53,13 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a href="#home" class="navbar-brand"><img src="img/main_logo_red.png" alt="logo"></a>
-                            <a href="#home" class="navbar-brand white"><img src="img/main_logo.png" alt="logo"></a>
+                            <?php if (has_custom_logo()): ?>
+                                <?php the_custom_logo(); ?>
+                            <?php else: ?>
+                                <h1><?php echo get_bloginfo('name'); ?> <br> <small> <?php echo get_bloginfo('description'); ?> </small></h1>
+                            <?php endif ?>
+                            <!-- <a href="#home" class="navbar-brand"><img src="img/main_logo_red.png" alt="logo"></a> -->
+                            <!-- <a href="#home" class="navbar-brand white"><img src="img/main_logo.png" alt="logo"></a> -->
                             <div style="clear:both"></div>
                         </div>
                         <div class="collapse navbar-collapse bs-example-js-navbar-scrollspy">

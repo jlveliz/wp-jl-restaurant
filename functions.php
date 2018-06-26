@@ -7,12 +7,10 @@
  * @since JL MetroCafe 1.0
  */
  
-define('JLMETROCAFE_FUNCTIONS_PATH', get_template_directory_uri());
 
 /*
 		================== FUNCTIONS ====================
 */
-require(JLMETROCAFE_FUNCTIONS_PATH . '/functions/customize-functions.php');
 
 
 
@@ -27,11 +25,27 @@ if (!function_exists('setup_jl_metrocafe')) :
 		 * hard-coded <title> tag in the document head, and expect WordPress to
 		 * provide it for us.
 		 */
-		// add_theme_support( 'title-tag' );
+		add_theme_support( 'title-tag' );
+
+		/**
+			ADD SUPPORT LOGO
+		**/
+		add_theme_support( 'custom-logo',[
+			'width' => 180,
+			'height' => 94,
+			'flex-width' => true,
+			'header-text' => array( 'site-title', 'site-description' ),
+		]);
 
 
+		/**
+			SUPPORT THUMBNAILS
+		**/
 		add_theme_support( 'post-thumbnails' );
 
+		/**
+		 * FORMAT POSTS
+		 */
 		add_theme_support( 'post-formats',  array ( 'aside', 'gallery', 'quote', 'image', 'video' ) );
 
 
@@ -104,4 +118,38 @@ function dwjl_scripts () {
 }
 
 add_action( 'wp_enqueue_scripts', 'dwjl_scripts' );
+
+
+
+/**
+	====================== CUSTOMIZER =================================
+*/
+
+if (!function_exists('dwjl_customizer')) {
+	
+	function dwjl_customizer($wp_customize)
+	{
+		$wp_customize->add_setting( 'header_textcolor' , [
+			'default'   => '#000000',
+			'transport' => 'refresh',
+		]);
+
+		$wp_customize->add_section('dwjl_preheader',[
+			'title' =>__('Pre-Header','dwjl_theme'),
+			'priority'   => 30,
+		]);
+
+		$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'link_color', array(
+	'label'      => __( 'Header Color', 'dwjl_theme' ),
+	'section'    => 'dwjl_preheader',
+	'settings'   => 'header_textcolor',
+) ) );
+	}
+
+}
+add_action( 'customize_register', 'dwjl_customizer', 10, 1 );
+
+/**
+	====================== CUSTOMIZER =================================
+*/
 
