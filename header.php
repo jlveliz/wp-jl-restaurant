@@ -20,8 +20,14 @@
                     <div class="row">
                         <div class="col-md-7 col-lg-6 col-sm-8">
                             <div class="call-to-action">
-                                <p><i class="fa fa-envelope-o"></i>Email: <a href="#">info@restaurant.com</a></p>
-                                <p><i class="fa fa-phone"></i>Telephone: <a href="#">+1 800 234 5678</a></p>
+                                
+                                <?php if (get_theme_mod('email')): ?>
+                                    <p><i class="fa fa-envelope-o"></i>Email: <a href="#"><?php echo get_theme_mod( 'email')   ?></a></p>
+                                <?php endif ?>
+
+                                <?php if (get_theme_mod('phone')): ?>
+                                    <p><i class="fa fa-phone"></i>Teléfono:<a href="#"><?php echo get_theme_mod( 'phone')   ?></a></p>
+                                <?php endif ?>
                             </div>
                         </div>
                         <div class="col-md-5 col-lg-6 col-sm-4">

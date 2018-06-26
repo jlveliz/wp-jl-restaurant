@@ -129,21 +129,44 @@ if (!function_exists('dwjl_customizer')) {
 	
 	function dwjl_customizer($wp_customize)
 	{
-		$wp_customize->add_setting( 'header_textcolor' , [
-			'default'   => '#000000',
-			'transport' => 'refresh',
+
+		//HEADER 
+		$wp_customize->add_panel( 'header', array(
+		  'title' => __( 'Header' ),
+		  'description' => 'Contact -  Logo - Slider', // Include html tags such as <p>.
+		  'priority' => 160, // Mixed with top-level-section hierarchy.
+		) );
+
+		$wp_customize->add_section('contact',[
+			'title' => __('Contact','dwjl_theme'),
+			'priority' => 1,
+			'panel' => 'header'
 		]);
 
-		$wp_customize->add_section('dwjl_preheader',[
-			'title' =>__('Pre-Header','dwjl_theme'),
-			'priority'   => 30,
+
+		$wp_customize->add_setting('phone' , array(
+			'default'     => '+(593) 4222222',
+			'transport'   => 'refresh',
+		));
+		$wp_customize->add_control('phone',[
+			'type' => '<input>',
+			'priority' => 10, // Within the section.
+			'section' => 'contact', // Required, core or custom.
+			'label' => __( 'Phone' ),
+			'description' => __( 'Contact Phone' ),
 		]);
 
-		$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'link_color', array(
-	'label'      => __( 'Header Color', 'dwjl_theme' ),
-	'section'    => 'dwjl_preheader',
-	'settings'   => 'header_textcolor',
-) ) );
+		$wp_customize->add_setting('email' , array(
+			'default'     => 'mail@thejlmedia.com',
+			'transport'   => 'refresh',
+		));
+		$wp_customize->add_control('email',[
+			'type' => '<input>',
+			'priority' => 10, // Within the section.
+			'section' => 'contact', // Required, core or custom.
+			'label' => __( 'Email' ),
+			'description' => __( 'Email' ),
+		]);
 	}
 
 }
