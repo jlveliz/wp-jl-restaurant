@@ -137,6 +137,10 @@ if (!function_exists('dwjl_customizer')) {
 		  'priority' => 160, // Mixed with top-level-section hierarchy.
 		) );
 
+		
+		/**
+			CONTACT - HEADER
+		**/
 		$wp_customize->add_section('contact',[
 			'title' => __('Contact','dwjl_theme'),
 			'priority' => 1,
@@ -144,8 +148,25 @@ if (!function_exists('dwjl_customizer')) {
 		]);
 
 
+		$wp_customize->add_setting('address' , array(
+			'default'     => '',
+			'transport'   => 'refresh',
+		));
+		$wp_customize->add_control('address',[
+			'type' => '<input>',
+			'priority' => 3, // Within the section.
+			'section' => 'contact', // Required, core or custom.
+			'label' => __( 'Adress' ),
+			'description' => __( 'Adress of your restaurant' ),
+			'input_attrs' => [
+				'placeholder' => '20, floor, Queenslad Victoria Building. 60 california street california USA',
+				'style'=>'width:100%'
+			]
+		]);
+		
+
 		$wp_customize->add_setting('phone' , array(
-			'default'     => '+(593) 4222222',
+			'default'     => '',
 			'transport'   => 'refresh',
 		));
 		$wp_customize->add_control('phone',[
@@ -154,10 +175,14 @@ if (!function_exists('dwjl_customizer')) {
 			'section' => 'contact', // Required, core or custom.
 			'label' => __( 'Phone' ),
 			'description' => __( 'Contact Phone' ),
+			'input_attrs' => [
+				'placeholder' => '+(593) 4222222',
+				'style'=>'width:100%'
+			]
 		]);
 
 		$wp_customize->add_setting('email' , array(
-			'default'     => 'mail@thejlmedia.com',
+			'default'     => '',
 			'transport'   => 'refresh',
 		));
 		$wp_customize->add_control('email',[
@@ -166,6 +191,66 @@ if (!function_exists('dwjl_customizer')) {
 			'section' => 'contact', // Required, core or custom.
 			'label' => __( 'Email' ),
 			'description' => __( 'Email' ),
+			'input_attrs' => [
+				'placeholder' => 'mail@thejlmedia.com',
+				'style'=>'width:100%'
+			],
+		]);
+
+
+		/**
+			SOCIAL - HEADER - FOOTER
+		**/
+		$wp_customize->add_section('social',[
+			'title' => __('Social','dwjl_theme'),
+			'priority' => 1,
+			'panel' => 'header'
+		]);
+
+
+		$wp_customize->add_setting('facebook_link' , array(
+			'default'     => '',
+			'transport'   => 'refresh',
+		));
+		$wp_customize->add_control('facebook_link',[
+			'type' => '<input>',
+			'priority' => 1, // Within the section.
+			'section' => 'social', // Required, core or custom.
+			'label' => __( 'Facebook' ),
+			'input_attrs' => [
+				'style' => 'width:100%'
+			],
+			'description' => __( 'Your Facebook Page' )
+		]);
+
+		$wp_customize->add_setting('twitter_link' , array(
+			'default'     => '',
+			'transport'   => 'refresh',
+		));
+		$wp_customize->add_control('twitter_link',[
+			'type' => '<input>',
+			'priority' => 2, // Within the section.
+			'section' => 'social', // Required, core or custom.
+			'label' => __( 'Twitter' ),
+			'description' => __( 'Your Twitter Profile' ),
+			'input_attrs' => [
+				'style' => 'width:100%'
+			],
+		]);
+
+		$wp_customize->add_setting('instagram_link' , array(
+			'default'     => '',
+			'transport'   => 'refresh',
+		));
+		$wp_customize->add_control('instagram_link',[
+			'type' => '<input>',
+			'priority' => 2, // Within the section.
+			'section' => 'social', // Required, core or custom.
+			'label' => __( 'Instagram' ),
+			'description' => __( 'Your Instagram Profile' ),
+			'input_attrs' => [
+				'style' => 'width:100%'
+			],
 		]);
 	}
 

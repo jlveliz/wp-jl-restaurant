@@ -13,7 +13,7 @@
 	<?php wp_head(); ?>
 </head>
 <body>
-	<header class="top-area" id="home">
+	<header class="top-area <?php if (!is_front_page()): ?> single-page single-blog-page <?php endif ?>" id="home">
         <div class="header-top-area">
             <div class="top-bar">
                 <div class="container">
@@ -34,15 +34,7 @@
                             <div class="book-table-popup">
                                 <a href="#reservation-form-modal" data-toggle="modal">Reservar una mesa</a>
                             </div>
-                            <div class="top-social-bookmark">
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-feed"></i></a></li>
-                                </ul>
-                            </div>
+                            <?php get_template_part('social-header'); ?>
                         </div>
                     </div>
                 </div>
@@ -94,7 +86,8 @@
             </div>
             <!--END MAINMENU AREA END-->
         </div>
-        <!--HHOME SLIDER AREA-->
+        <?php if(is_front_page()): ?>
+             <!--HHOME SLIDER AREA-->
         <div class="slider-area">
             <div class="pogoSlider">
                 <div class="pogoSlider-slide" data-transition="fade" data-duration="1500" style="background:url(img/slider/slide_1.jpg) no-repeat scroll 0 0 / cover;">
@@ -115,4 +108,23 @@
             </div>
         </div>
         <!--HOME SLIDER AREA END-->
+        <?php else: ?>
+            <!--PAGE BARNER AREA-->
+            <div class="page-barner-area">
+                <div class="container wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12">
+                            <div class="barner-text">
+                                <h1>Blog <span>Details</span></h1>
+                                <ul class="page-location">
+                                    <li><a href="index.html">Home</a></li>
+                                    <li><i class="fa fa-angle-right"></i></li>
+                                    <li class="active"><a href="single-blog.html">Blog Details</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
     </header>
