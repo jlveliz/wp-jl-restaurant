@@ -27,15 +27,15 @@ if (!function_exists('setup_jl_metrocafe')) :
 		 */
 		add_theme_support( 'title-tag' );
 
-		/**
-			ADD SUPPORT LOGO
-		**/
-		add_theme_support( 'custom-logo',[
-			'width' => 180,
-			'height' => 94,
-			'flex-width' => true,
-			'header-text' => array( 'site-title', 'site-description' ),
-		]);
+		// /**
+		// 	ADD SUPPORT LOGO
+		// **/
+		// add_theme_support( 'custom-logo',[
+		// 	'width' => 180,
+		// 	'height' => 94,
+		// 	'flex-width' => true,
+		// 	'header-text' => array( 'site-title', 'site-description' ),
+		// ]);
 
 
 		/**
@@ -131,11 +131,45 @@ if (!function_exists('dwjl_customizer')) {
 	{
 
 		//HEADER 
-		$wp_customize->add_panel( 'header', array(
-		  'title' => __( 'Header' ),
+		$wp_customize->add_panel( 'general', array(
+		  'title' => __( 'General' ),
 		  'description' => 'Contact -  Logo - Slider', // Include html tags such as <p>.
-		  'priority' => 160, // Mixed with top-level-section hierarchy.
+		  'priority' => 1, // Mixed with top-level-section hierarchy.
 		) );
+
+		/**
+			LOGO
+		**/
+		$wp_customize->add_section('logo',[
+			'title' => __('Logo','dwjl_theme'),
+			'priority' => 1,
+			'panel' => 'general'
+		]);
+
+
+		$wp_customize->add_setting('first_logo_brand' , array(
+			'default'     => '',
+			'transport'   => 'refresh',
+		));
+
+		$wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'first_logo_brand', array(
+        	'label' => 'Upload Hover Logo',
+        	'section' => 'logo', //this is the section where the custom-logo from WordPress is
+        	'settings' => 'first_logo_brand',
+        	'priority' => 1 // show it just below the custom-logo
+    	)));
+
+    	$wp_customize->add_setting('second_logo_brand' , array(
+			'default'     => '',
+			'transport'   => 'refresh',
+		));
+
+		$wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'second_logo_brand', array(
+        	'label' => 'Upload Second Logo',
+        	'section' => 'logo', //this is the section where the custom-logo from WordPress is
+        	'settings' => 'second_logo_brand',
+        	'priority' => 1 // show it just below the custom-logo
+    	)));
 
 		
 		/**
@@ -144,7 +178,7 @@ if (!function_exists('dwjl_customizer')) {
 		$wp_customize->add_section('contact',[
 			'title' => __('Contact','dwjl_theme'),
 			'priority' => 1,
-			'panel' => 'header'
+			'panel' => 'general'
 		]);
 
 
@@ -204,7 +238,7 @@ if (!function_exists('dwjl_customizer')) {
 		$wp_customize->add_section('social',[
 			'title' => __('Social','dwjl_theme'),
 			'priority' => 1,
-			'panel' => 'header'
+			'panel' => 'general'
 		]);
 
 

@@ -16,4 +16,16 @@
 ?>
 <?php get_header(); ?>
 
+<?php get_template_part( 'partials/banner-index'); ?>
+</header>
+
+<!-- CONTENT -->
+<section class="blog-page blog-area section-padding">
+	<div class="content">
+		<?php while (have_posts()): the_post();  ?>
+			<?php echo the_title(); ?>
+		<?php endwhile; ?>
+	</div>
+</section>
+<!-- / CONTENT -->
 <?php get_footer(); ?>

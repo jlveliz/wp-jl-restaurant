@@ -13,7 +13,7 @@
 	<?php wp_head(); ?>
 </head>
 <body>
-	<header class="top-area <?php if (!is_front_page()): ?> single-page single-blog-page <?php endif ?>" id="home">
+	<header class="top-area <?php if (is_home()): ?> single-page single-blog-page <?php endif ?>" id="home">
         <div class="header-top-area">
             <div class="top-bar">
                 <div class="container">
@@ -51,13 +51,12 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <?php if (has_custom_logo()): ?>
-                                <?php the_custom_logo(); ?>
+                            <?php if (get_theme_mod( 'first_logo_brand') && get_theme_mod( 'second_logo_brand')): ?>
+                                <a href="/" class="navbar-brand"><img src="<?php echo get_theme_mod( 'first_logo_brand') ?>" alt="logo"></a>
+                                <a href="/" class="navbar-brand white"><img src="<?php echo get_theme_mod( 'second_logo_brand') ?>" alt="logo"></a>
                             <?php else: ?>
                                 <h1><?php echo get_bloginfo('name'); ?> <br> <small> <?php echo get_bloginfo('description'); ?> </small></h1>
                             <?php endif ?>
-                            <!-- <a href="#home" class="navbar-brand"><img src="img/main_logo_red.png" alt="logo"></a> -->
-                            <!-- <a href="#home" class="navbar-brand white"><img src="img/main_logo.png" alt="logo"></a> -->
                             <div style="clear:both"></div>
                         </div>
                         <div class="collapse navbar-collapse bs-example-js-navbar-scrollspy">
@@ -86,45 +85,3 @@
             </div>
             <!--END MAINMENU AREA END-->
         </div>
-        <?php if(is_front_page()): ?>
-             <!--HHOME SLIDER AREA-->
-        <div class="slider-area">
-            <div class="pogoSlider">
-                <div class="pogoSlider-slide" data-transition="fade" data-duration="1500" style="background:url(img/slider/slide_1.jpg) no-repeat scroll 0 0 / cover;">
-                    <h2 class="pogoSlider-slide-element" data-in="slideDown" data-out="flipX" data-duration="700">Bienvenidos a</h2>
-                    <h1 class="pogoSlider-slide-element" data-in="expand" data-out="flipX" data-duration="1500"><span>METRO CAFE</span> Cafe & Restaurant</h1>
-                    <h3 class="pogoSlider-slide-element" data-in="slideUp" data-out="flipX" data-duration="700"><a  href="#reservation-form-modal" data-toggle="modal">Reserva Ahora</a></h3>
-                </div>
-                <div class="pogoSlider-slide" data-transition="fade" style="background:url(img/slider/slide_2.jpg) no-repeat scroll 0 0 / cover;">
-                    <h2 class="pogoSlider-slide-element" data-in="slideDown" data-out="flipX" data-duration="700">Nuestro Menu</h2>
-                    <h1 class="pogoSlider-slide-element" data-in="expand" data-out="flipX" data-duration="1500">Mira la promoción de <span>hoy</span></h1>
-                    <h3 class="pogoSlider-slide-element" data-in="slideUp" data-out="flipX" data-duration="700"><a href="#menu">Menú</a></h3>
-                </div>
-                <div class="pogoSlider-slide" data-transition="fade" style="background:url(img/slider/slide_3.jpg) no-repeat scroll 0 0 / cover;">
-                    <h2 class="pogoSlider-slide-element" data-in="slideDown" data-out="flipX" data-duration="700">Prepárate</h2>
-                    <h1 class="pogoSlider-slide-element" data-in="expand" data-out="flipX" data-duration="1500">para <span>Disfrutar</span> ahora</h1>
-                    <h3 class="pogoSlider-slide-element" data-in="slideUp" data-out="flipX" data-duration="700"><a  href="#reservation-form-modal" data-toggle="modal">Reserva una mesa</a></h3>
-                </div>
-            </div>
-        </div>
-        <!--HOME SLIDER AREA END-->
-        <?php else: ?>
-            <!--PAGE BARNER AREA-->
-            <div class="page-barner-area">
-                <div class="container wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
-                    <div class="row">
-                        <div class="col-md-12 col-xs-12">
-                            <div class="barner-text">
-                                <h1>Blog <span>Details</span></h1>
-                                <ul class="page-location">
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><i class="fa fa-angle-right"></i></li>
-                                    <li class="active"><a href="single-blog.html">Blog Details</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <?php endif; ?>
-    </header>
