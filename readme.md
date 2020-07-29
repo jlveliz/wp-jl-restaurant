@@ -1,4 +1,7 @@
-=== JL METRO CAFE ===
+# Wordpress theme for restaurant
+
+## Unfinished 
+
 Theme Name: JL METRO CAFE
 Theme URI: https://thejlmedia.com;
 Author: Jorge Veliz
@@ -10,10 +13,8 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: blog, restaurant, two colums
 Text Domain: twentysixteen
 
-== Installation ==
+##  Installation 
 A Wordpress template based on Restaurant Dawat temlate http://quomodosoft.com/html/dawat/demo/index-1.html
-
-== Installation ==
 
 1. In your admin panel, go to Appearance -> Themes and click the 'Add New' button.
 2. Type in Twenty Sixteen in the search form and press the 'Enter' key on your keyboard.
